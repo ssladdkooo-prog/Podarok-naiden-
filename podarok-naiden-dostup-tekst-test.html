@@ -1,0 +1,299 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#850d25"><title>Подарок найден! 🎁</title><style>
+:root{--green:#173d33;--red:#850d25;--cream:#fff8ef;--gold:#e8bd78;--ink:#29231f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 90% 8%,#a82a40 0%,transparent 32%),linear-gradient(165deg,#8b102b 0%,#750b21 60%,#570b1d 100%);color:var(--ink);font-family:system-ui,-apple-system,Arial,sans-serif}
+header{color:var(--gold);padding:45px 20px 68px;text-align:center;position:relative}
+header:before{content:'✦';position:absolute;left:8%;top:45px;font-size:25px;color:#d4a35e;opacity:.65}
+header:after{content:'✧';position:absolute;right:9%;bottom:50px;font-size:35px;color:#d4a35e;opacity:.55}
+header .tiny{letter-spacing:3px;font-size:11px;color:#f0cd91;font-weight:650}
+h1{font-family:Georgia,'Times New Roman',serif;font-weight:500;font-size:clamp(37px,8vw,64px);line-height:1.12;margin:18px auto;max-width:660px;letter-spacing:-.7px}
+header p{max-width:520px;margin:0 auto;line-height:1.7;color:#fff1e4;font-size:15px}
+.wrap{max-width:740px;margin:-30px auto 50px;padding:0 15px;position:relative}
+.panel{background:var(--cream);border:1px solid #f1dfc7;border-radius:22px;box-shadow:0 18px 55px #36051455;padding:clamp(20px,5vw,35px);margin-bottom:20px}
+.step{color:#8b1933;font-weight:750;font-size:12px;letter-spacing:1.2px}
+h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(26px,5vw,34px);font-weight:600;margin:16px 0 8px;color:#30231e}
+h3{margin:0 0 8px;color:#30231e}
+p{line-height:1.55}.muted{color:#786f67;font-size:14px}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:23px 0}
+.choice{border:1.5px solid #e8dacc;border-radius:13px;padding:16px 10px;text-align:center;background:#fffdf9;color:var(--ink);font:inherit;cursor:pointer;min-height:58px;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.choice[aria-pressed=true]{border-color:var(--green);background:var(--green);color:#fff8ed;box-shadow:0 4px 13px #173d3330;font-weight:700;transform:translateY(-1px)}
+.wide{grid-column:1/-1}.actions{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.btn{border:0;border-radius:12px;padding:15px 20px;background:var(--red);color:#fff8ef;font-size:16px;font-weight:700;cursor:pointer;transition:filter .2s}
+.btn:hover{filter:brightness(1.1)}.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.alt{background:#eee4d8;color:#583b32}.btn.gold{background:var(--green);color:#fff8ef}
+.hidden{display:none!important}.progress{height:7px;background:#e8dfd3;border-radius:10px;overflow:hidden;margin:16px 0 22px}.progress span{display:block;height:100%;background:var(--green);transition:width .2s}
+.gift{display:grid;grid-template-columns:75px 1fr;gap:15px;padding:18px 0;border-top:1px solid #e8dccc}.emoji{height:75px;border-radius:16px;background:#e9ede5;display:flex;align-items:center;justify-content:center;font-size:38px}
+.gift strong{font-size:17px}.price{font-weight:750;color:var(--red);margin:7px 0}.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.links a{background:#e9eee7;color:var(--green);padding:9px 12px;border-radius:9px;font-size:13px;text-decoration:none;font-weight:650}
+.tag{display:inline-block;background:#f7ede5;color:var(--red);padding:6px 9px;border-radius:8px;font-size:12px;font-weight:700}.notice{background:#f5ecdf;padding:14px;border-radius:12px;font-size:13px;line-height:1.5;color:#62594f}
+.footer{text-align:center;color:#e8c6b9;font-size:12px;padding:20px}button:focus-visible,a:focus-visible{outline:3px solid #d6a35b;outline-offset:2px}
+@media(max-width:400px){.panel{padding:19px}.choices{gap:8px}.choice{padding:13px 7px;font-size:14px}.gift{grid-template-columns:58px 1fr}.emoji{width:58px;height:58px;font-size:30px}.btn{padding:14px 16px;font-size:14px}}
+
+/* Оформление без декоративной рамки */
+.framed-stage{position:relative;max-width:1050px;margin:22px auto 0;padding:24px 30px 36px}
+
+.framed-stage header{padding:28px 12px 66px}
+.framed-stage .wrap{margin-bottom:0}
+.framed-stage .panel{box-shadow:0 18px 50px #34051145}
+.framed-stage header:before,.framed-stage header:after{display:none}
+.creator-signature{font-size:12px;letter-spacing:1.5px;color:#edc88c;text-align:center;margin:8px auto 0}
+.creator-signature span{display:block;opacity:.85;font-size:12px;letter-spacing:1.4px}.creator-signature strong{display:block;margin-top:7px;color:#edc88c;font-size:12px;letter-spacing:1.4px;font-weight:400;opacity:.85}.hero-cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin:24px auto 0;background:#173d33;color:#f4d59b;text-decoration:none;padding:15px 25px;border:1px solid #d8b57d;border-radius:12px;font-weight:750;box-shadow:0 8px 24px #34051140}.hero-cta:hover{background:#205447}.hero-cta:focus-visible{outline:3px solid #fff8ef;outline-offset:3px}
+@media(max-width:650px){.framed-stage{margin:10px 5px 0;padding:20px 12px 22px}.framed-stage header{padding:25px 8px 55px}.framed-stage .wrap{padding:0 4px}.framed-stage header h1{font-size:clamp(32px,8vw,50px)}.framed-stage header p{font-size:14px}}
+
+/* Экран предложения полного доступа: тест без оплаты */
+.access-offer{margin-top:24px;padding:24px 20px;border:1px solid #e8d1ad;border-radius:18px;background:linear-gradient(150deg,#fffdf8,#f6ead8);text-align:center}
+.access-offer .access-eyebrow{font-size:11px;font-weight:750;letter-spacing:1.5px;color:#8b1933}
+.access-offer h3{font-family:Georgia,'Times New Roman',serif;font-size:27px;font-weight:500;margin:12px 0}
+.access-offer .access-price{font-family:Georgia,'Times New Roman',serif;font-size:39px;color:#850d25;margin:12px 0 4px}
+.access-offer ul{padding:0;list-style:none;text-align:left;max-width:360px;margin:18px auto;line-height:1.7}
+.access-offer li{margin:7px 0}
+.access-offer .btn{width:100%;max-width:370px}
+.access-offer .access-note{font-size:12px;color:#786f67;margin-top:13px}
+.access-offer .access-feedback{margin:12px auto 0;max-width:390px;color:#173d33;font-size:13px;font-weight:650}
+</style></head><body><div class="framed-stage"><header><h1>Идеальный подарок существует.</h1><p>Всего несколько вопросов о человеке, и мы подберём подарки с учётом его интересов, характера и вашего бюджета.</p></header><main class="wrap"><section id="quiz" class="panel"><div class="step" id="counter">ВОПРОС 1 ИЗ 7</div><div class="progress"><span id="bar" style="width:14%"></span></div><h2 id="question"></h2><p id="hint" class="muted"></p><div id="choices" class="choices"></div><noscript><p class="muted">Для анкеты нужен JavaScript. Откройте сайт в Safari, а не во встроенном просмотрщике файла.</p></noscript><div class="actions"><button id="back" type="button" class="btn alt">Назад</button><button id="next" type="button" class="btn">Дальше →</button></div></section><section id="results" class="panel hidden" aria-live="polite"><div class="step">ВАШИ РЕКОМЕНДАЦИИ</div><h2>Подарки подобраны! ✨</h2><p class="muted" id="summary"></p><div id="cards"></div><div class="notice">Это тестовая версия каталога с приблизительными ценами (идеи до 10 000 ₽) и без фотографий товаров. Цены приблизительные и не являются предложениями продавцов. Кнопки ведут на поиск по названию товара, а не на проверенную карточку. Проверяйте цену, наличие, возрастные ограничения и сроки доставки.</div><div class="actions"><button id="restart" type="button" class="btn alt">↻ Пройти заново</button><button id="copy" type="button" class="btn gold">Скопировать идеи</button></div></section><div class="creator-signature"><span>Создано с любовью</span><strong>ssladdkooo</strong></div></main></div><script>
+'use strict';
+const questions=[
+{key:'who',title:'Кому выбираем подарок?',hint:'Выбери того, кого хочешь порадовать.',opts:[['boyfriend','❤️ Парню'],['girlfriend','❤️ Девушке'],['mother','👩 Маме'],['father','👨 Папе'],['male_friend','🤝 Другу'],['female_friend','🤝 Подруге'],['colleague','💼 Коллеге'],['child','🧸 Ребёнку']]},
+{key:'age',title:'Сколько ему или ей лет?',hint:'Возраст поможет исключить неподходящие идеи.',opts:[['kid','6–12 лет'],['teen','13–17 лет'],['young','18–30 лет'],['adult','31–55 лет'],['senior','56+ лет']]},
+{key:'budget',title:'Какой максимальный бюджет?',hint:'Мы не будем предлагать подарки дороже лимита.',opts:[['1000','До 1 000 ₽'],['2000','До 2 000 ₽'],['3000','До 3 000 ₽'],['5000','До 5 000 ₽'],['10000','До 10 000 ₽']]},
+{key:'interest',title:'Что больше всего нравится человеку?',hint:'Выбери до трёх увлечений.',opts:[['cozy','🏠 Дом и уют'],['tech','📱 Гаджеты'],['creative','🎨 Творчество'],['food','🍫 Еда и напитки'],['sport','🏃 Спорт'],['games','🎲 Игры'],['beauty','🧴 Уход за собой'],['books','📚 Книги и знания']]},
+{key:'personality',title:'Какой он или она по характеру?',hint:'Это поможет сделать рекомендацию более точной.',opts:[['practical','Практичный человек'],['curious','Любит пробовать новое'],['sentimental','Ценит воспоминания'],['homebody','Любит домашний уют']]},
+{key:'effect',title:'Какой эффект хочется получить?',hint:'Подберём подарок под твою задумку.',opts:[['useful','Чтобы пользовался каждый день'],['wow','Чтобы удивился'],['warm','Чтобы растрогался']]},
+{key:'avoid',title:'Что точно НЕ дарим?',hint:'Можно выбрать одну категорию или «Без ограничений».',opts:[['none','Без ограничений'],['food','Еду и напитки'],['cosmetic','Косметику и уход'],['decor','Декор и вещи для дома'],['tech','Технику и гаджеты'],['games','Игры и головоломки']]}
+];
+// Catalog: illustrative gift ideas, not verified retail offers.
+const raw=[
+['Термокружка','🥤',1500,'cozy sport','practical homebody','useful','tech','all'],
+['Набор для домашнего какао','☕',950,'food cozy','homebody sentimental','warm','food','all'],
+['Настольная игра для компании','🎲',1900,'games','curious','wow','games','all'],
+['Мини-проектор звёздного неба','🌌',2500,'tech cozy','curious homebody','wow','tech decor','young teen kid adult'],
+['Плед с рукавами','🧣',2200,'cozy','homebody practical','warm useful','decor','all'],
+['Набор для создания свечей','🕯️',1400,'creative cozy','curious homebody','wow','decor','all'],
+['Фотокнига с вашими историями','📖',2300,'creative books','sentimental','warm','decor','all'],
+['Портативный аккумулятор','🔋',2600,'tech','practical','useful','tech','teen young adult senior'],
+['Набор для выращивания микрозелени','🌱',900,'creative food','curious homebody','wow','food decor','all'],
+['Деревянная головоломка','🧩',850,'games creative','curious','wow','games','all'],
+['Набор необычного чая','🍵',1100,'food cozy','homebody','warm','food','all'],
+['Карточки для глубоких разговоров','💌',700,'games books','sentimental curious','warm','games','teen young adult senior'],
+['Спортивная бутылка','🚴',800,'sport','practical','useful','tech','all'],
+['Коврик для йоги','🧘',1800,'sport','practical','useful','decor','teen young adult senior'],
+['Книга с красивыми иллюстрациями','📚',1400,'books creative','curious sentimental','warm','decor','all'],
+['Скетчбук и набор маркеров','🎨',1600,'creative','curious','wow useful','decor','all'],
+['Беспроводная мышь','🖱️',1700,'tech','practical','useful','tech','teen young adult'],
+['Подставка для телефона','📱',750,'tech','practical','useful','tech','teen young adult senior'],
+['Набор специй для кулинарных экспериментов','🌶️',1200,'food','curious','wow','food','teen young adult senior'],
+['Набор для приготовления печенья','🍪',1350,'food creative','curious homebody','wow','food','all'],
+['Набор уходовых масок','🧖',900,'beauty','homebody','warm','cosmetic','teen young adult senior'],
+['Органайзер для косметики','🪞',1300,'beauty cozy','practical','useful','cosmetic decor','teen young adult senior'],
+['Электрическая щётка для лица','✨',2900,'beauty tech','practical','useful','cosmetic tech','young adult'],
+['Шёлковая наволочка','🛏️',2400,'beauty cozy','homebody','warm useful','decor cosmetic','teen young adult senior'],
+['Аромадиффузор без масел','🌿',1650,'cozy','homebody','warm','decor','young adult senior'],
+['Набор для вышивания','🧵',950,'creative','homebody curious','wow','decor','all'],
+['Алмазная мозаика','💎',1100,'creative','homebody','wow','decor','all'],
+['3D-пазл','🏰',1900,'games creative','curious','wow','games','all'],
+['Кубик-головоломка','🧠',600,'games','curious','wow','games','all'],
+['Настольный мини-баскетбол','🏀',1400,'sport games','curious','wow','games','kid teen young adult'],
+['Эспандеры для тренировок','💪',1000,'sport','practical','useful','tech','teen young adult senior'],
+['Сумка для спортивной формы','🎒',1800,'sport','practical','useful','decor','teen young adult'],
+['Книга рецептов','👩‍🍳',1100,'food books','curious homebody','useful','decor','teen young adult senior'],
+['Набор форм для выпечки','🧁',800,'food','practical homebody','useful','decor','teen young adult senior'],
+['Кофейный дегустационный набор','☕',1950,'food','curious','wow','food','young adult senior'],
+['Френч-пресс','🫖',1400,'food cozy','practical homebody','useful','decor','teen young adult senior'],
+['Ночник с тёплым светом','💡',1200,'cozy tech','homebody','warm','tech decor','all'],
+['Настольный календарь с фото','🗓️',800,'cozy creative','sentimental','warm','decor','all'],
+['Карта желаний в рамке','🗺️',900,'creative','sentimental curious','warm','decor','teen young adult'],
+['Блокнот с персональной обложкой','📓',850,'books creative','sentimental practical','warm useful','decor','all'],
+['Портативная колонка','🔊',3300,'tech','curious practical','wow useful','tech','teen young adult'],
+['Беспроводные наушники','🎧',4200,'tech sport','practical','useful','tech','teen young adult'],
+['Мини-увлажнитель воздуха','💧',2200,'cozy tech','homebody practical','useful','tech decor','young adult senior'],
+['Подарочный набор мёда','🍯',1300,'food','homebody','warm','food','all'],
+['Мягкая игрушка-подушка','🧸',1100,'cozy','sentimental homebody','warm','decor','kid teen young'],
+['Конструктор с шестерёнками','⚙️',3100,'games creative tech','curious','wow','games','kid teen young adult'],
+['Набор для научных опытов','🔬',1700,'creative games','curious','wow','games','kid teen'],
+['Детская энциклопедия','🦕',1250,'books','curious','wow','decor','kid'],
+['Пенал-органайзер','✏️',650,'creative books','practical','useful','decor','kid teen'],
+['Настольная лампа','💡',2800,'books tech cozy','practical','useful','tech decor','teen young adult senior'],
+['Набор для каллиграфии','✒️',1450,'creative books','curious','wow','decor','teen young adult senior'],
+['Пазл по собственной фотографии','🧩',1750,'games creative','sentimental','warm','games','teen young adult senior'],
+['Керамическая кружка ручной работы','🏺',1600,'cozy food','sentimental homebody','warm','decor','teen young adult senior'],
+['Набор открыток с личными пожеланиями','💌',650,'creative books','sentimental','warm','decor','all'],
+['Термос для прогулок','🌲',2100,'sport cozy','practical','useful','tech','teen young adult senior'],
+['Органайзер для рабочего стола','🗂️',1050,'tech books','practical','useful','decor','teen young adult senior'],
+['Книга-квест с загадками','🔎',950,'books games','curious','wow','games','kid teen young adult'],
+['Набор для рисования по номерам','🖌️',1700,'creative','homebody','wow','decor','teen young adult senior'],
+['Грелка для рук многоразовая','🧤',650,'cozy sport','practical homebody','useful','tech','all'],
+['Набор для домашнего киносеанса','🍿',1450,'food games cozy','homebody','warm wow','food','teen young adult senior']
+];
+const extraRaw=[
+ ["Умная колонка", "🔊", 4500, "tech cozy", "practical curious", "useful wow", "tech", "teen young adult senior"],
+ ["Фитнес-браслет", "⌚", 4000, "sport tech", "practical", "useful", "tech", "teen young adult senior"],
+ ["Электронная фоторамка", "🖼️", 5500, "tech cozy", "sentimental", "warm", "tech decor", "young adult senior"],
+ ["Портативный фотопринтер", "📸", 7500, "tech creative", "curious sentimental", "wow warm", "tech", "teen young adult"],
+ ["Беспроводная зарядная станция", "🔌", 3500, "tech", "practical", "useful", "tech", "teen young adult senior"],
+ ["Механическая клавиатура", "⌨️", 6000, "tech games", "practical curious", "useful wow", "tech", "teen young adult"],
+ ["Геймпад", "🎮", 5000, "games tech", "curious", "wow", "games tech", "teen young adult"],
+ ["Умная лампа", "💡", 3000, "tech cozy", "homebody curious", "useful wow", "tech decor", "teen young adult senior"],
+ ["Мини-проектор для фильмов", "📽️", 9500, "tech cozy games", "homebody curious", "wow", "tech", "teen young adult"],
+ ["Утяжелённое одеяло", "🛌", 6500, "cozy", "homebody", "warm", "decor", "young adult senior"],
+ ["Кофеварка", "☕", 7000, "food cozy", "practical homebody", "useful", "tech", "young adult senior"],
+ ["Набор качественного постельного белья", "🛏️", 5500, "cozy", "practical homebody", "useful warm", "decor", "young adult senior"],
+ ["Настольный биокамин", "🔥", 6500, "cozy", "homebody", "wow", "decor", "young adult"],
+ ["Атмосферный светильник", "🌙", 3500, "cozy tech", "homebody", "warm wow", "decor tech", "teen young adult senior"],
+ ["Набор керамики ручной работы", "🏺", 4500, "cozy creative", "sentimental homebody", "warm", "decor", "young adult senior"],
+ ["Домашняя метеостанция", "🌦️", 4000, "tech cozy", "practical curious", "useful", "tech", "teen young adult senior"],
+ ["Электрическая вафельница", "🧇", 4500, "food cozy", "practical homebody", "useful", "tech", "young adult senior"],
+ ["Фотоаппарат моментальной печати", "📷", 9000, "creative tech", "curious sentimental", "wow warm", "tech", "teen young adult"],
+ ["Графический планшет", "✍️", 6500, "creative tech", "curious practical", "useful wow", "tech", "teen young adult"],
+ ["Большой художественный набор", "🎨", 4000, "creative", "curious", "wow", "decor", "kid teen young adult senior"],
+ ["Набор для гончарного творчества", "🏺", 3500, "creative", "curious homebody", "wow", "decor", "teen young adult senior"],
+ ["Мини-принтер для наклеек", "🖨️", 5000, "creative tech", "curious", "wow", "tech", "teen young adult"],
+ ["Набор для создания парфюма", "🌸", 4000, "creative beauty", "curious", "wow", "cosmetic", "young adult"],
+ ["Швейная мини-машинка", "🧵", 7500, "creative", "practical curious", "useful", "tech", "teen young adult senior"],
+ ["Картина по фотографии на холсте", "🖼️", 3500, "creative cozy", "sentimental", "warm", "decor", "teen young adult senior"],
+ ["Набор для выжигания по дереву", "🪵", 3000, "creative", "curious", "wow", "decor", "teen young adult"],
+ ["Музыкальный MIDI-контроллер", "🎹", 9500, "creative tech", "curious", "wow useful", "tech", "teen young adult"],
+ ["Массажный пистолет", "💆", 5000, "sport beauty", "practical", "useful", "cosmetic tech", "young adult"],
+ ["Спортивная сумка премиум-класса", "🎒", 4500, "sport", "practical", "useful", "decor", "teen young adult senior"],
+ ["Набор гантелей", "🏋️", 5500, "sport", "practical", "useful", "decor", "teen young adult"],
+ ["Балансборд", "🏄", 4500, "sport games", "curious", "wow", "games", "teen young adult"],
+ ["Роликовые коньки", "🛼", 7000, "sport", "curious", "wow", "decor", "teen young adult"],
+ ["Туристический рюкзак", "🥾", 6500, "sport", "practical", "useful", "decor", "teen young adult senior"],
+ ["Палатка для походов", "⛺", 9500, "sport", "practical curious", "useful wow", "decor", "young adult"],
+ ["Набор для бадминтона", "🏸", 3500, "sport games", "curious", "wow", "games", "kid teen young adult senior"],
+ ["Палки для скандинавской ходьбы", "🚶", 3500, "sport", "practical", "useful", "decor", "young adult senior"],
+ ["Спортивные смарт-весы", "⚖️", 4000, "sport tech", "practical", "useful", "tech", "young adult"],
+ ["Фен с ионизацией", "💨", 6500, "beauty tech", "practical", "useful", "cosmetic tech", "teen young adult senior"],
+ ["Стайлер для волос", "💇", 9000, "beauty tech", "practical", "useful", "cosmetic tech", "teen young adult"],
+ ["Зеркало с подсветкой", "🪞", 4500, "beauty cozy", "practical", "useful", "cosmetic decor", "teen young adult senior"],
+ ["Набор качественных кистей для макияжа", "🖌️", 3500, "beauty creative", "practical", "useful", "cosmetic", "teen young adult"],
+ ["Электрическая зубная щётка", "🪥", 5500, "beauty tech", "practical", "useful", "cosmetic tech", "teen young adult senior"],
+ ["Массажёр для лица", "✨", 4000, "beauty", "practical", "useful", "cosmetic tech", "young adult"],
+ ["Органайзер для украшений", "💍", 3500, "beauty cozy", "practical", "useful", "decor", "teen young adult senior"],
+ ["Шкатулка для часов", "⌚", 5000, "cozy", "practical sentimental", "useful warm", "decor", "young adult senior"],
+ ["Набор для домашнего маникюра", "💅", 4500, "beauty", "practical", "useful", "cosmetic", "young adult"],
+ ["Паровая сауна для лица", "🧖", 4000, "beauty", "homebody", "useful", "cosmetic tech", "young adult"],
+ ["Большой LEGO-совместимый конструктор", "🧱", 7500, "games creative", "curious", "wow", "games", "kid teen young adult"],
+ ["Настольная игра премиум-класса", "🎲", 4500, "games", "curious", "wow", "games", "teen young adult senior"],
+ ["Электронная книга", "📖", 9500, "books tech", "practical", "useful", "tech", "teen young adult senior"],
+ ["Коллекционное издание книги", "📚", 4500, "books", "sentimental curious", "warm wow", "decor", "teen young adult senior"],
+ ["Домашний набор для покера без ставок", "🃏", 3500, "games", "curious", "wow", "games", "young adult senior"],
+ ["Сертификат на мастер-класс", "🎟️", 5000, "creative", "curious", "wow", "experience", "teen young adult senior"],
+ ["Билеты на концерт", "🎫", 8000, "creative", "curious sentimental", "wow warm", "experience", "teen young adult senior"],
+ ["Сертификат на фотосессию", "📷", 7500, "creative", "sentimental", "warm", "experience", "young adult senior"],
+ ["Посещение квест-комнаты", "🔐", 4500, "games", "curious", "wow", "experience games", "teen young adult"],
+ ["Сертификат на творческое занятие", "🧑‍🎨", 3500, "creative", "curious", "wow", "experience", "kid teen young adult senior"]
+];
+const gifts=raw.concat(extraRaw).map((r,i)=>({id:i,name:r[0],emoji:r[1],price:r[2],interests:r[3].split(' '),personalities:r[4].split(' '),effects:r[5].split(' '),avoid:r[6].split(' '),ages:r[7].split(' ')}));
+// Уточняем метки существующих товаров, чтобы запреты работали по смыслу.
+const correctedAvoid={
+ 'Термокружка':[], 'Спортивная бутылка':[], 'Эспандеры для тренировок':[],
+ 'Термос для прогулок':[], 'Грелка для рук многоразовая':[],
+ 'Сумка для спортивной формы':[], 'Коврик для йоги':[],
+ 'Набор для выращивания микрозелени':['decor'],
+ 'Книга рецептов':[], 'Набор форм для выпечки':[],
+ 'Френч-пресс':[], 'Набор для приготовления печенья':['food'],
+ 'Органайзер для косметики':['cosmetic','decor'],
+ 'Набор для вышивания':[], 'Алмазная мозаика':['decor']
+};
+gifts.forEach(g=>{if(Object.prototype.hasOwnProperty.call(correctedAvoid,g.name))g.avoid=correctedAvoid[g.name]});
+gifts.forEach(g=>{g.experience=g.avoid.includes('experience');if(g.experience)g.avoid=g.avoid.filter(x=>x!=='experience')});
+const recipientRules={
+ child:{exclude:['Кофейный','Френч-пресс','Спортивная форма','Электрическая щётка','Шёлковая наволочка','Органайзер для косметики','Набор специй'],prefer:['Конструктор','Набор для научных','Детская','Пазл','Творческий','Книга-квест']},
+ colleague:{exclude:['Фотокнига','Шёлковая наволочка','Набор уходовых','Мягкая игрушка','Карточки для глубоких','Карта желаний'],prefer:['Термокружка','Органайзер','Набор необычного чая','Блокнот']},
+ mother:{exclude:['Настольный мини-баскетбол','Конструктор с шестерёнками'],prefer:['Фотокнига','Набор необычного чая','Набор для создания свечей']},
+ father:{exclude:['Набор уходовых масок','Органайзер для косметики','Шёлковая наволочка'],prefer:['Термос','Френч-пресс','Термокружка']},
+ partner:{exclude:[],prefer:['Фотокнига','Пазл по собственной','Карточки для глубоких','Мини-проектор']},
+ friend:{exclude:[],prefer:['Настольная игра','Набор для создания свечей','Книга-квест']}
+};
+function suitable(g){const who=['boyfriend','girlfriend'].includes(answers.who)?'partner':['male_friend','female_friend'].includes(answers.who)?'friend':answers.who;const rules=recipientRules[who]||recipientRules.friend;return !rules.exclude.some(x=>g.name.includes(x))}
+function recipientBonus(g){const who=['boyfriend','girlfriend'].includes(answers.who)?'partner':['male_friend','female_friend'].includes(answers.who)?'friend':answers.who;return (recipientRules[who]?.prefer||[]).some(x=>g.name.includes(x))?4:0}
+let step=0;const answers={};const $=id=>document.getElementById(id);
+ function chosenInterests(){return Array.isArray(answers.interest)?answers.interest:answers.interest?[answers.interest]:[]}
+ function matchesInterest(g){return chosenInterests().some(i=>g.interests.includes(i))}
+ function render(){const q=questions[step];const multi=q.key==='interest';$('counter').textContent=`ВОПРОС ${step+1} ИЗ ${questions.length}`;$('bar').style.width=((step+1)/questions.length*100)+'%';$('question').textContent=q.title;$('hint').textContent=q.hint;$('choices').replaceChildren();q.opts.forEach(([value,label])=>{const b=document.createElement('button');b.type='button';b.className='choice';b.textContent=label;const selected=multi?chosenInterests().includes(value):answers[q.key]===value;b.setAttribute('aria-pressed',String(selected));b.addEventListener('click',()=>{if(multi){const current=chosenInterests();answers.interest=current.includes(value)?current.filter(i=>i!==value):current.length<3?[...current,value]:current}else{answers[q.key]=value}render()});$('choices').appendChild(b)});$('back').disabled=step===0;$('next').disabled=multi?!chosenInterests().length:!answers[q.key];$('next').textContent=step===questions.length-1?'🎁 Подобрать подарки':'Дальше →'}function score(g){return (chosenInterests().reduce((total,i)=>total+(g.interests.includes(i)?10:0),0))+(g.personalities.includes(answers.personality)?5:0)+(g.effects.includes(answers.effect)?4:0)+(g.price<=Number(answers.budget)*.75?1:0)+recipientBonus(g)}
+function eligible(g){const budget=Number(answers.budget);return g.price>=500&&g.price<=budget&&suitable(g)&&(g.ages.includes('all')||g.ages.includes(answers.age))&&(answers.avoid==='none'||!g.avoid.includes(answers.avoid))&&(!g.experience||matchesInterest(g))}
+function rankedFor(label,exclude=new Set()){
+ const budget=Number(answers.budget);
+ const pool=gifts.filter(g=>eligible(g)&&!exclude.has(g.id));
+ const scored=pool.map(g=>{
+  const base=score(g);
+  const matchCount=chosenInterests().filter(i=>g.interests.includes(i)).length;
+  let category=0;
+  if(label==='🎯 Идеальное попадание')category=matchCount*3;
+  if(label==='✨ Неожиданный подарок')category=(g.effects.includes('wow')?12:-10)+(g.personalities.includes('curious')?2:0);
+  if(label==='💰 Бюджетная находка')category=(g.price<=Math.min(3000,budget*.5)?12:0)-(g.price>budget*.65?12:0);
+  return {...g,rank:base+category};
+ });
+ // Сначала приоритетные идеи, затем остальные допустимые, без искусственного обрыва списка.
+ if(label==='✨ Неожиданный подарок')return scored.sort((a,b)=>Number(b.effects.includes('wow'))-Number(a.effects.includes('wow'))||b.rank-a.rank||a.price-b.price);
+ if(label==='💰 Бюджетная находка')return scored.sort((a,b)=>Number(b.price<=Math.min(3000,budget*.5))-Number(a.price<=Math.min(3000,budget*.5))||Number(b.price<=budget*.65)-Number(a.price<=budget*.65)||b.rank-a.rank||a.price-b.price);
+ return scored.sort((a,b)=>b.rank-a.rank||a.price-b.price);
+}
+const recommendationLabels=['🎯 Идеальное попадание','✨ Неожиданный подарок','💰 Бюджетная находка'];
+// Разнообразие стартовой тройки: выбираем из сильных кандидатов, а не из всего каталога.
+// Последние стартовые подарки сохраняем только в текущей вкладке браузера.
+function recommend(){
+ const signature=JSON.stringify(questions.map(q=>q.key==='interest'?[...chosenInterests()].sort():answers[q.key]));
+ const storageKey='podarok-start-v2:'+signature;
+ let recent=[];
+ try{recent=JSON.parse(sessionStorage.getItem(storageKey)||'[]');if(!Array.isArray(recent))recent=[]}catch(e){recent=[]}
+ const used=new Set();
+ const results=recommendationLabels.map(label=>{
+  const ranked=rankedFor(label,used);
+  if(!ranked.length)return {label,gift:null};
+  // Приоритет сохраняется: сначала товары с максимальным соответствием интересам.
+  const best=ranked[0].rank;
+  let shortlist=ranked.filter(g=>g.rank>=best-8).slice(0,10);
+  if(!shortlist.length)shortlist=ranked.slice(0,1);
+  const fresh=shortlist.filter(g=>!recent.includes(g.id));
+  const candidates=fresh.length?fresh:shortlist;
+  // Внутри качественной короткой выборки добавляем небольшую случайность.
+  const weights=candidates.map(g=>Math.max(1,1+(g.rank-best+8)/3));
+  const total=weights.reduce((a,b)=>a+b,0);
+  let roll=Math.random()*total;
+  let gift=candidates[candidates.length-1];
+  for(let i=0;i<candidates.length;i++){roll-=weights[i];if(roll<=0){gift=candidates[i];break}}
+  used.add(gift.id);
+  return {label,gift};
+ }).filter(x=>x.gift);
+ try{sessionStorage.setItem(storageKey,JSON.stringify([...recent,...results.map(x=>x.gift.id)].slice(-24)))}catch(e){}
+ return results;
+}
+function giftExplanation(g,label){
+ const matches=chosenInterests().filter(i=>g.interests.includes(i));
+ const interestNames={cozy:'дом и уют',tech:'гаджеты',creative:'творчество',food:'еду и напитки',sport:'спорт',games:'игры',beauty:'уход за собой',books:'книги и знания'};
+ const parts=[];
+ if(matches.length)parts.push('Связан с интересами: '+matches.map(i=>interestNames[i]||i).join(', ')+'.');
+ else parts.push('Дополнительная идея в рамках бюджета.');
+ if(g.personalities.includes(answers.personality))parts.push('Учитывает характер получателя.');
+ if(g.effects.includes(answers.effect))parts.push('Соответствует желаемому эффекту.');
+ if(label==='💰 Бюджетная находка')parts.push(g.price<=Number(answers.budget)*.65?'Стоит заметно меньше установленного лимита.':'Дополнительный вариант в пределах бюджета.');
+ if(label==='✨ Неожиданный подарок')parts.push(g.effects.includes('wow')?'Выбран как необычный вариант.':'Дополнительная идея после просмотра необычных вариантов.');
+ return parts.join(' ');
+}
+function searchLink(market,name){const query=encodeURIComponent(name);return market==='ozon'?'https://www.ozon.ru/search/?text='+query:'https://www.wildberries.ru/catalog/0/search.aspx?search='+query}
+function updateGiftLinks(container,g){const links=container.querySelector('.links');links.replaceChildren();if(g.experience){const note=document.createElement('span');note.className='muted';note.textContent='Уточните наличие, город, возрастные условия и итоговую цену у организатора.';links.appendChild(note);return} [['Искать на Ozon','ozon'],['Искать на WB','wb']].forEach(([label,market])=>{const a=document.createElement('a');a.href=searchLink(market,g.name);a.target='_blank';a.rel='noopener noreferrer';a.textContent=label;links.appendChild(a)})}
+let rejected=new Set();
+function replaceGift(section,label){
+ const current=section.querySelector('.gift');
+ rejected.add(Number(current.dataset.giftId));
+ const taken=new Set(Array.from(document.querySelectorAll('[data-gift-id]')).map(x=>Number(x.dataset.giftId)));
+ const next=rankedFor(label,new Set([...rejected,...taken]))[0];
+ if(!next){const b=section.querySelector('button.choice');b.textContent='Больше подходящих вариантов нет';b.disabled=true;return}
+ const old=section.querySelector('.gift');old.dataset.giftId=next.id;
+ old.querySelector('.emoji').textContent=next.emoji;
+ old.querySelector('strong').textContent=next.name;
+ old.querySelector('.price').textContent='≈ '+next.price.toLocaleString('ru-RU')+' ₽';
+ old.querySelector('p.muted').textContent=giftExplanation(next,label);
+ updateGiftLinks(old,next);
+}
+function showResults(){rejected.clear();const results=recommend();$('quiz').classList.add('hidden');$('results').classList.remove('hidden');$('summary').textContent=`Бюджет до ${Number(answers.budget).toLocaleString('ru-RU')} ₽ · Мы исключили неподходящие категории и учли интересы.`;$('cards').replaceChildren();if(!results.length){$('cards').textContent='Пока не нашлось вариантов с такими ограничениями. Попробуй изменить ответы.'}results.slice(0,2).forEach(({label,gift:g})=>{const sec=document.createElement('section');const h=document.createElement('h3');h.style.marginTop='24px';h.textContent=label;sec.appendChild(h);const row=document.createElement('div');row.className='gift';row.dataset.giftId=g.id;const em=document.createElement('div');em.className='emoji';em.textContent=g.emoji;const details=document.createElement('div');const name=document.createElement('strong');name.textContent=g.name;const price=document.createElement('div');price.className='price';price.textContent='≈ '+g.price.toLocaleString('ru-RU')+' ₽';const why=document.createElement('p');why.className='muted';why.textContent=giftExplanation(g,label);const links=document.createElement('div');links.className='links';const another=document.createElement('button');another.type='button';another.className='choice';another.style.marginTop='10px';another.style.width='100%';another.textContent='↻ Не подходит, покажи другой';another.addEventListener('click',()=>{document.getElementById('access-offer')?.scrollIntoView({behavior:'smooth',block:'center'})});another.textContent='🔒 Посмотреть другой подарок';details.append(name,price,why,links,another);row.append(em,details);updateGiftLinks(row,g);sec.appendChild(row);$('cards').appendChild(sec)});
+ if(results.length){
+  const offer=document.createElement('section');offer.id='access-offer';offer.className='access-offer';
+  offer.innerHTML='<div class="access-eyebrow">БОЛЬШЕ ИДЕЙ ДЛЯ ВАШЕГО ПОДАРКА</div><h3>Тот самый подарок ещё впереди ✨</h3><p>Вы посмотрели 2 бесплатные рекомендации. Откройте больше подходящих вариантов и подбирайте подарки для близких без ограничений.</p><div class="access-price">490 ₽</div><div class="muted">Разовая оплата · Неограниченный доступ к подбору подарков</div><ul><li>✓ Все подходящие идеи из каталога</li><li>✓ Замена подарков без повторов, пока есть варианты</li><li>✓ Неограниченные прохождения анкеты</li><li>✓ Подбирайте подарки для разных людей без ограничений</li></ul><button class="btn" type="button" id="access-buy">Открыть полный доступ за 490 ₽</button><div class="access-note">Демонстрация экрана. Оплата пока не подключена.</div><div id="access-feedback" class="access-feedback" role="status" aria-live="polite"></div>';
+  $('cards').appendChild(offer);
+  $('access-buy').addEventListener('click',()=>{$('access-feedback').textContent='Это тестовая версия. Списания денег нет, платёжная система ещё не подключена.'});
+ }
+ window.scrollTo({top:0,behavior:'auto'})}
+$('back').addEventListener('click',()=>{if(step>0){step--;render()}});$('next').addEventListener('click',()=>{if(questions[step].key==='interest'?!chosenInterests().length:!answers[questions[step].key])return;if(step<questions.length-1){step++;render()}else showResults()});$('restart').addEventListener('click',()=>{$('results').classList.add('hidden');$('quiz').classList.remove('hidden');step=0;Object.keys(answers).forEach(k=>delete answers[k]);render();window.scrollTo(0,0)});$('copy').addEventListener('click',async()=>{const text=Array.from(document.querySelectorAll('#cards section')).filter(sec=>sec.querySelector('.gift')).map(sec=>sec.querySelector('h3').textContent+': '+sec.querySelector('.gift strong').textContent+' ('+sec.querySelector('.price').textContent+')').join('\n');try{await navigator.clipboard.writeText(text);$('copy').textContent='✓ Скопировано'}catch(e){window.prompt('Скопируй список:',text)}});render();
+</script></body></html>
